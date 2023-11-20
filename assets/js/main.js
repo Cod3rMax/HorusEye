@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
      class Game {
           constructor(gameWidth, gameHeight) {
                this.gameWidth = gameWidth;
-               this.gameWidth = gameWidth;
+               this.gameHeight = gameHeight;
                this.intro = new Intro(this);
           }
 
