@@ -12,11 +12,12 @@ window.addEventListener('load', function () {
                this.gameWidth = gameWidth;
                this.gameHeight = gameHeight;
                this.intro = new Intro(this);
+               this.intro.image.onload = () => {
+                    this.intro.draw(context);
+               };
           }
 
-          draw(context) {
-               this.intro.draw(context);
-          }
+          draw(context) {}
 
           update() {
                this.intro.update();

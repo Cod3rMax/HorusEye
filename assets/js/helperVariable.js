@@ -1,3 +1,3 @@
 export const option = {
-     introImage: '../../images/eye.png',
+     introImage: '../../images/eye.svg',
 };
