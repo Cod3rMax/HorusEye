@@ -4,4 +4,7 @@ export const option = {
           x: undefined,
           y: undefined,
      },
+     clearScreen: function (context, game) {
+          context.clearRect(0, 0, game.width, game.height);
+     },
 };
