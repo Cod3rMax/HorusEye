@@ -38,7 +38,9 @@ window.addEventListener('load', function () {
      const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
      const inputs = new InputsHandler(canvas);
      function animate() {
-          option.clearScreen(context, game);
+          context.fillStyle = 'rgb(0,0,0, 0.1)';
+          if (!game.introAnimationDone) option.clearScreen(context, game);
+          else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
           game.update();
           game.draw(context);
           requestAnimationFrame(animate);

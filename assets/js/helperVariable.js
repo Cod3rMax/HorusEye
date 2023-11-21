@@ -2,7 +2,7 @@ export const option = {
      introImage: '../../images/eye.svg',
      introImageSize: 3,
      introParticlesGap: 3,
-     displayImageTime: 3000,
+     displayImageTime: 0,
      introSpeed: 0.05,
      mousePosition: {
           x: undefined,
