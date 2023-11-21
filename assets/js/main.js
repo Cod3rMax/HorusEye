@@ -1,4 +1,6 @@
 import { Intro } from './intro.js';
+import { InputsHandler } from './inputs.js';
+import { option } from './helperVariable.js';
 window.addEventListener('load', function () {
      const canvas = document.querySelector('canvas');
      const context = canvas.getContext('2d');
@@ -23,7 +25,7 @@ window.addEventListener('load', function () {
      }
 
      const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
-
+     const inputs = new InputsHandler(canvas);
      function animate() {
           game.update();
           game.draw(context);
