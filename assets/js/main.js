@@ -8,11 +8,16 @@ window.addEventListener('load', function () {
           constructor(gameWidth, gameHeight) {
                this.width = gameWidth;
                this.height = gameHeight;
+               this.particlesArray = [];
                this.intro = new Intro(this);
                this.intro.draw(context);
           }
 
-          draw(context) {}
+          draw(context) {
+               this.particlesArray.forEach((particle) => {
+                    particle.draw(context);
+               });
+          }
 
           update() {}
      }

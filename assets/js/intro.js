@@ -1,5 +1,5 @@
 import { option } from './helperVariable.js';
-
+import { Particles } from './particles.js';
 export class Intro {
      constructor(game) {
           this.game = game;
@@ -15,22 +15,17 @@ export class Intro {
      draw(context) {
           this.image.onload = () => {
                context.drawImage(this.image, this.x, this.y, this.imageWidth, this.imageHeight);
-
                let pixels = context.getImageData(0, 0, this.game.width, this.game.height);
 
-               for (let y = 0; y < pixels.height; y += 3) {
-                    for (let x = 0; x < pixels.width; x += 3) {
+               for (let y = 0; y < pixels.height; y += 5) {
+                    for (let x = 0; x < pixels.width; x += 5) {
                          let index = (y * pixels.width + x) * 4;
                          let red = pixels.data[index];
                          let green = pixels.data[index + 1];
                          let blue = pixels.data[index + 2];
                          let alpha = pixels.data[index + 3];
                          if (alpha > 0) {
-                              context.beginPath();
-                              context.fillStyle = 'white';
-                              context.fillRect(x, y, 2, 2);
-                              context.fill();
-                              context.closePath();
+                              this.game.particlesArray.push(new Particles(x, y, 'white'));
                          }
                     }
                }
