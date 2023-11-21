@@ -2,19 +2,17 @@ import { Intro } from './intro.js';
 window.addEventListener('load', function () {
      const canvas = document.querySelector('canvas');
      const context = canvas.getContext('2d');
-     const CANVAS_WIDTH = (canvas.width = window.innerWidth - 100);
-     const CANVAS_HEIGHT = (canvas.height = window.innerHeight - 100);
-
+     const CANVAS_WIDTH = (canvas.width = window.innerWidth * 0.5);
+     const CANVAS_HEIGHT = (canvas.height = window.innerHeight * 0.7);
      class Game {
           constructor(gameWidth, gameHeight) {
                this.width = gameWidth;
                this.height = gameHeight;
                this.intro = new Intro(this);
-          }
-
-          draw(context) {
                this.intro.draw(context);
           }
+
+          draw(context) {}
 
           update() {}
      }
