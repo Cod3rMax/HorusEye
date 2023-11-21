@@ -5,8 +5,8 @@ export class Intro {
           this.game = game;
           this.image = new Image();
           this.image.src = option.introImage;
-          this.imageWidth = this.image.width * 1.5;
-          this.imageHeight = this.image.height * 1.5;
+          this.imageWidth = this.image.width * option.introImageSize;
+          this.imageHeight = this.image.height * option.introImageSize;
           this.centerX = this.game.width / 2;
           this.centerY = this.game.height / 2;
           this.x = this.centerX - this.imageWidth * 0.5;
@@ -17,8 +17,8 @@ export class Intro {
                context.drawImage(this.image, this.x, this.y, this.imageWidth, this.imageHeight);
                const pixels = context.getImageData(0, 0, this.game.width, this.game.height);
                option.clearScreen(context, this.game);
-               for (let y = 0; y < pixels.height; y += 5) {
-                    for (let x = 0; x < pixels.width; x += 5) {
+               for (let y = 0; y < pixels.height; y += option.introParticlesGap) {
+                    for (let x = 0; x < pixels.width; x += option.introParticlesGap) {
                          let index = (y * pixels.width + x) * 4;
                          const red = pixels.data[index];
                          const green = pixels.data[index + 1];
@@ -27,7 +27,7 @@ export class Intro {
                          const color = `rgb(${red}, ${green}, ${blue})`;
 
                          if (alpha > 0) {
-                              this.game.particlesArray.push(new Particles(x, y, color));
+                              this.game.particlesArray.push(new Particles(x, y, color, this.game));
                          }
                     }
                }

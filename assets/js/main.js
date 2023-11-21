@@ -13,20 +13,32 @@ window.addEventListener('load', function () {
                this.particlesArray = [];
                this.intro = new Intro(this);
                this.intro.draw(context);
+               this.introAnimationDone = false;
           }
 
           draw(context) {
-               this.particlesArray.forEach((particle) => {
-                    particle.draw(context);
-               });
+               if (!this.introAnimationDone) {
+                    this.particlesArray.forEach((particle) => {
+                         particle.draw(context);
+                    });
+                    return;
+               } else this.particlesArray = [];
           }
 
-          update() {}
+          update() {
+               if (!this.introAnimationDone) {
+                    this.particlesArray.forEach((particle) => {
+                         particle.update();
+                    });
+                    return;
+               } else this.particlesArray = [];
+          }
      }
 
      const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
      const inputs = new InputsHandler(canvas);
      function animate() {
+          option.clearScreen(context, game);
           game.update();
           game.draw(context);
           requestAnimationFrame(animate);
