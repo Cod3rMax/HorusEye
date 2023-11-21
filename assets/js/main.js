@@ -13,25 +13,39 @@ window.addEventListener('load', function () {
                this.particlesArray = [];
                this.intro = new Intro(this);
                this.intro.draw(context);
-               this.introAnimationDone = false;
+               this.introAnimationDone = true;
           }
 
           draw(context) {
-               if (!this.introAnimationDone) {
-                    this.particlesArray.forEach((particle) => {
-                         particle.draw(context);
-                    });
-                    return;
-               } else this.particlesArray = [];
+               // if (!this.introAnimationDone) {
+               //      this.particlesArray.forEach((particle) => {
+               //           particle.draw(context);
+               //      });
+               //      return;
+               // } else this.particlesArray = [];
+               context.beginPath();
+               context.fillStyle = 'red';
+               context.font = '20px Consolas';
+               context.textAlign = 'center';
+               context.fontWeight = 'bold';
+               context.fillText('Find the Password', this.width / 2, this.height / 6);
+               context.fillText(
+                    "Don't fear the darkness if you carry the light within",
+                    this.width / 2,
+                    this.height / 4,
+               );
+               context.fillText('You have limited time', this.width / 2, this.height / 3);
+               context.fillText('Starting Now!', this.width / 2, this.height / 2);
+               context.fill();
           }
 
           update() {
-               if (!this.introAnimationDone) {
-                    this.particlesArray.forEach((particle) => {
-                         particle.update();
-                    });
-                    return;
-               } else this.particlesArray = [];
+               // if (!this.introAnimationDone) {
+               //      this.particlesArray.forEach((particle) => {
+               //           particle.update();
+               //      });
+               //      return;
+               // } else this.particlesArray = [];
           }
      }
 
