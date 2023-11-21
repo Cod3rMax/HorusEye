@@ -24,10 +24,12 @@ window.addEventListener('load', function () {
                //      return;
                // } else this.particlesArray = [];
                context.beginPath();
-               context.fillStyle = 'red';
-               context.font = '20px Consolas';
+               context.fillStyle = '#0f0';
+               const fontSize = Math.min(Math.floor(this.width / 29), 25);
+               context.font = `${fontSize}px Consolas`;
                context.textAlign = 'center';
                context.fontWeight = 'bold';
+               context.shadowColor = 'red';
                context.fillText('Find the Password', this.width / 2, this.height / 6);
                context.fillText(
                     "Don't fear the darkness if you carry the light within",
