@@ -25,6 +25,8 @@ export class Instructions {
 
           let pixels = context.getImageData(0, 0, this.game.width, this.game.height);
 
+          context.clearRect(0, 0, this.game.width, this.game.height);
+
           for (let y = 0; y < pixels.height; y += 1) {
                for (let x = 0; x < pixels.width; x += 1) {
                     let index = (y * pixels.width + x) * 4;

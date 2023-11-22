@@ -13,36 +13,45 @@ window.addEventListener('load', function () {
                this.height = gameHeight;
                this.particlesArray = [];
                this.instructionsArray = [];
-               // this.intro = new Intro(this);
-               // this.intro.draw(context);
-               this.introAnimationDone = true;
+               this.intro = new Intro(this);
+               this.intro.draw(context);
+               this.introAnimationDone = false;
                //* instruction animation
                this.instructions = new Instructions(this);
                this.instructionAnimationDone = false;
+               this.instructions.draw(context);
           }
 
           draw(context) {
-               // if (!this.introAnimationDone) {
-               //      this.particlesArray.forEach((particle) => {
-               //           particle.draw(context);
-               //      });
-               //      return;
-               // }
-               // this.particlesArray = [];
+               if (!this.introAnimationDone) {
+                    this.particlesArray.forEach((particle) => {
+                         particle.draw(context);
+                    });
+                    return;
+               } else this.particlesArray = [];
+
+               if (!this.instructionAnimationDone) {
+                    this.instructionsArray.forEach((particle) => {
+                         particle.draw(context);
+                    });
+                    return;
+               } else this.instructionsArray = [];
           }
 
           update() {
-               // this.instructions.draw(context);
-               this.instructionsArray.forEach((particle) => {
-                    particle.update();
-               });
+               if (!this.introAnimationDone) {
+                    this.particlesArray.forEach((particle) => {
+                         particle.update();
+                    });
+                    return;
+               } else this.particlesArray = [];
 
-               // if (!this.introAnimationDone) {
-               //      this.particlesArray.forEach((particle) => {
-               //           particle.update();
-               //      });
-               //      return;
-               // } else this.particlesArray = [];
+               if (!this.instructionAnimationDone) {
+                    this.instructionsArray.forEach((particle) => {
+                         particle.update();
+                    });
+                    return;
+               } else this.instructionsArray = [];
           }
      }
 
@@ -50,9 +59,9 @@ window.addEventListener('load', function () {
      const inputs = new InputsHandler(canvas);
 
      function animate() {
-          // context.fillStyle = 'rgb(0,0,0)';
-          // if (!game.introAnimationDone) option.clearScreen(context, game);
-          // else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          context.fillStyle = 'rgb(0,0,0)';
+          if (!game.introAnimationDone) option.clearScreen(context, game);
+          else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
           game.update();
           game.draw(context);
