@@ -1,6 +1,6 @@
 import { option } from './helperVariable.js';
 export class InputsHandler {
-     constructor(canvas) {
+     constructor(canvas, context) {
           this.canvas = canvas;
 
           this.canvas.addEventListener('mousemove', ({ clientX, clientY }) => {
@@ -9,7 +9,6 @@ export class InputsHandler {
 
                option.mousePosition.x = clientX - canvasTopRect;
                option.mousePosition.y = clientY - canvasLeftRect;
-               console.log(option.mousePosition);
           });
      }
 }
