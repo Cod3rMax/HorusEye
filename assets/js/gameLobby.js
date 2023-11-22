@@ -54,7 +54,7 @@ export class GameLobby {
           context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
           context.fillStyle = 'transparent';
           context.lineWidth = 2;
-          context.strokeStyle = this.color;
+          context.strokeStyle = 'this.color';
           context.stroke();
           context.closePath();
           context.beginPath();
@@ -65,5 +65,16 @@ export class GameLobby {
           context.fillText(this.letter, this.x, this.y);
           context.fill();
           context.closePath();
+
+          let distance =
+               option.calculateDistance(
+                    this.x,
+                    this.y,
+                    option.mousePosition.x,
+                    option.mousePosition.y,
+               ) - this.radius;
+          if (distance < 0) {
+               this.color = 'white';
+          }
      }
 }

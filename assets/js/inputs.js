@@ -1,14 +1,14 @@
 import { option } from './helperVariable.js';
 export class InputsHandler {
-     constructor(canvas, context) {
+     constructor(canvas) {
           this.canvas = canvas;
 
           this.canvas.addEventListener('mousemove', ({ clientX, clientY }) => {
-               let canvasTopRect = this.canvas.getBoundingClientRect().x;
-               let canvasLeftRect = this.canvas.getBoundingClientRect().y;
+               let canvasTopRect = this.canvas.getBoundingClientRect().top;
+               let canvasLeftRect = this.canvas.getBoundingClientRect().left;
 
-               option.mousePosition.x = clientX - canvasTopRect;
-               option.mousePosition.y = clientY - canvasLeftRect;
+               option.mousePosition.x = clientX - canvasLeftRect;
+               option.mousePosition.y = clientY - canvasTopRect;
           });
      }
 }
