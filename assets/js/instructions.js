@@ -35,7 +35,7 @@ export class Instructions {
                     const color = `rgb(${red}, ${green}, ${blue})`;
 
                     if (alpha > 128) {
-                         this.game.particlesArray.push(
+                         this.game.instructionsArray.push(
                               new InstructionParticles(x, y, '#0f0', this.game),
                          );
                     }
