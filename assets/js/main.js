@@ -13,46 +13,41 @@ window.addEventListener('load', function () {
                this.height = gameHeight;
                this.particlesArray = [];
                this.instructionsArray = [];
-               //this.intro = new Intro(this);
-               this.instructions = new Instructions(this);
-               this.instructions.draw(context);
-               // this.intro.draw(context);
-               this.introAnimationDone = true;
+               this.intro = new Intro(this);
+               this.intro.draw(context);
+               this.introAnimationDone = false;
+
+               this.instructionAnimationDone = false;
           }
 
           draw(context) {
-               // if (!this.introAnimationDone) {
-               //      this.particlesArray.forEach((particle) => {
-               //           particle.draw(context);
-               //      });
-               //      return;
-               // } else this.particlesArray = [];
-
-               this.particlesArray.forEach((particle) => {
-                    particle.draw(context);
-               });
+               if (!this.introAnimationDone) {
+                    this.particlesArray.forEach((particle) => {
+                         particle.draw(context);
+                    });
+                    return;
+               }
+               this.particlesArray = [];
           }
 
           update() {
-               // if (!this.introAnimationDone) {
-               //      this.particlesArray.forEach((particle) => {
-               //           particle.update();
-               //      });
-               //      return;
-               // } else this.particlesArray = [];
-               this.particlesArray.forEach((particle) => {
-                    particle.update();
-               });
+               if (!this.introAnimationDone) {
+                    this.particlesArray.forEach((particle) => {
+                         particle.update();
+                    });
+                    return;
+               } else this.particlesArray = [];
           }
      }
 
      const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
      const inputs = new InputsHandler(canvas);
+
      function animate() {
-          context.fillStyle = 'rgb(0,0,0, 0.1)';
-          // if (!game.introAnimationDone) option.clearScreen(context, game);
-          // else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-          context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          context.fillStyle = 'rgb(0,0,0)';
+          if (!game.introAnimationDone) option.clearScreen(context, game);
+          else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
           game.update();
           game.draw(context);
           requestAnimationFrame(animate);

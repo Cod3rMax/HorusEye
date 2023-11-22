@@ -1,4 +1,4 @@
-import { Particles } from './particles.js';
+import { InstructionParticles } from './particles.js';
 import { option } from './helperVariable.js';
 export class Instructions {
      constructor(game) {
@@ -24,7 +24,7 @@ export class Instructions {
           context.fill();
 
           let pixels = context.getImageData(0, 0, this.game.width, this.game.height);
-          option.clearScreen(context, this.game);
+
           for (let y = 0; y < pixels.height; y += 1) {
                for (let x = 0; x < pixels.width; x += 1) {
                     let index = (y * pixels.width + x) * 4;
@@ -35,7 +35,9 @@ export class Instructions {
                     const color = `rgb(${red}, ${green}, ${blue})`;
 
                     if (alpha > 128) {
-                         this.game.particlesArray.push(new Particles(x, y, '#0f0', this.game));
+                         this.game.particlesArray.push(
+                              new InstructionParticles(x, y, '#0f0', this.game),
+                         );
                     }
                }
           }

@@ -1,5 +1,5 @@
 import { option } from './helperVariable.js';
-import { Particles } from './particles.js';
+import { IntroParticles } from './particles.js';
 export class Intro {
      constructor(game) {
           this.game = game;
@@ -11,6 +11,7 @@ export class Intro {
           this.centerY = this.game.height / 2;
           this.x = this.centerX - this.imageWidth * 0.5;
           this.y = this.centerY - this.imageHeight * 0.5;
+          this.markedAsFinished = false;
      }
      draw(context) {
           this.image.onload = () => {
@@ -27,7 +28,9 @@ export class Intro {
                          const color = `rgb(${red}, ${green}, ${blue})`;
 
                          if (alpha > 0) {
-                              this.game.particlesArray.push(new Particles(x, y, color, this.game));
+                              this.game.particlesArray.push(
+                                   new IntroParticles(x, y, color, this.game),
+                              );
                          }
                     }
                }
