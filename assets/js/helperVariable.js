@@ -3,7 +3,8 @@ export const option = {
      introImageSize: 3,
      introParticlesGap: 3,
      displayImageTime: 3000,
-     introSpeed: 0.05,
+     displayInstructionTime: 7000,
+     introSpeed: 0.04,
      mousePosition: {
           x: undefined,
           y: undefined,

@@ -14,8 +14,8 @@ window.addEventListener('load', function () {
                this.particlesArray = [];
                this.instructionsArray = [];
                this.intro = new Intro(this);
-               this.intro.draw(context);
                this.introAnimationDone = false;
+               this.intro.draw(context);
                //* instruction animation
                this.instructions = new Instructions(this);
                this.instructionAnimationDone = false;
