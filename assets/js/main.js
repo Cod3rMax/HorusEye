@@ -1,4 +1,5 @@
 import { Intro } from './intro.js';
+import { Instructions } from './instructions.js';
 import { InputsHandler } from './inputs.js';
 import { option } from './helperVariable.js';
 window.addEventListener('load', function () {
@@ -11,8 +12,11 @@ window.addEventListener('load', function () {
                this.width = gameWidth;
                this.height = gameHeight;
                this.particlesArray = [];
-               this.intro = new Intro(this);
-               this.intro.draw(context);
+               this.instructionsArray = [];
+               //this.intro = new Intro(this);
+               this.instructions = new Instructions(this);
+               this.instructions.draw(context);
+               // this.intro.draw(context);
                this.introAnimationDone = true;
           }
 
@@ -23,22 +27,10 @@ window.addEventListener('load', function () {
                //      });
                //      return;
                // } else this.particlesArray = [];
-               context.beginPath();
-               context.fillStyle = '#0f0';
-               const fontSize = Math.min(Math.floor(this.width / 29), 25);
-               context.font = `${fontSize}px Consolas`;
-               context.textAlign = 'center';
-               context.fontWeight = 'bold';
-               context.shadowColor = 'red';
-               context.fillText('Find the Password', this.width / 2, this.height / 6);
-               context.fillText(
-                    "Don't fear the darkness if you carry the light within",
-                    this.width / 2,
-                    this.height / 4,
-               );
-               context.fillText('You have limited time', this.width / 2, this.height / 3);
-               context.fillText('Starting Now!', this.width / 2, this.height / 2);
-               context.fill();
+
+               this.particlesArray.forEach((particle) => {
+                    particle.draw(context);
+               });
           }
 
           update() {
@@ -48,6 +40,9 @@ window.addEventListener('load', function () {
                //      });
                //      return;
                // } else this.particlesArray = [];
+               this.particlesArray.forEach((particle) => {
+                    particle.update();
+               });
           }
      }
 
@@ -55,8 +50,9 @@ window.addEventListener('load', function () {
      const inputs = new InputsHandler(canvas);
      function animate() {
           context.fillStyle = 'rgb(0,0,0, 0.1)';
-          if (!game.introAnimationDone) option.clearScreen(context, game);
-          else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          // if (!game.introAnimationDone) option.clearScreen(context, game);
+          // else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
           game.update();
           game.draw(context);
           requestAnimationFrame(animate);
