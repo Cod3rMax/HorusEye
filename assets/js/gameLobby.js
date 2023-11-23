@@ -65,10 +65,11 @@ export class GameLobby {
                     option.mousePosition.x,
                     option.mousePosition.y,
                ) - this.radius;
-          if (distance < 60) {
-               this.color = 'red';
+          // console.log(1 - distance / option.torchLightRadius);
+          if (distance < option.torchLightRadius) {
+               this.color = `rgb(0,0,0,${1 - distance / option.torchLightRadius})`;
           } else {
-               this.color = 'orange';
+               this.color = 'black';
           }
      }
 }

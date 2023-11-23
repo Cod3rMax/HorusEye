@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
                this.instructionAnimationDone = true;
                this.instructions.draw(context);
                this.torchLight = new TorchLight(this, this.inputs);
-               for (let i = 0; i < 3; i++) {
+               for (let i = 0; i < 1; i++) {
                     this.passwordLetters.push(new GameLobby(this));
                }
           }
