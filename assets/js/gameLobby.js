@@ -65,7 +65,6 @@ export class GameLobby {
           context.fillText(this.letter, this.x, this.y);
           context.fill();
           context.closePath();
-
           let distance =
                option.calculateDistance(
                     this.x,
@@ -73,8 +72,10 @@ export class GameLobby {
                     option.mousePosition.x,
                     option.mousePosition.y,
                ) - this.radius;
-          if (distance < 0) {
-               this.color = 'white';
+          if (distance < 20) {
+               this.color = 'rgb(255,255,255,1)';
+          } else {
+               this.color = 'red';
           }
      }
 }

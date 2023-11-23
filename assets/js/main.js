@@ -2,6 +2,7 @@ import { Intro } from './intro.js';
 import { Instructions } from './instructions.js';
 import { InputsHandler } from './inputs.js';
 import { GameLobby } from './gameLobby.js';
+import { TorchLight } from './torchLight.js';
 import { option } from './helperVariable.js';
 window.addEventListener('load', function () {
      const canvas = document.querySelector('canvas');
@@ -12,6 +13,7 @@ window.addEventListener('load', function () {
           constructor(gameWidth, gameHeight) {
                this.width = gameWidth;
                this.height = gameHeight;
+               this.inputs = new InputsHandler(canvas);
                this.particlesArray = [];
                this.instructionsArray = [];
                this.passwordLetters = [];
@@ -22,7 +24,8 @@ window.addEventListener('load', function () {
                this.instructions = new Instructions(this);
                this.instructionAnimationDone = true;
                this.instructions.draw(context);
-               for (let i = 0; i < 1; i++) {
+               this.torchLight = new TorchLight(this, this.inputs);
+               for (let i = 0; i < 3; i++) {
                     this.passwordLetters.push(new GameLobby(this));
                }
           }
@@ -44,16 +47,7 @@ window.addEventListener('load', function () {
 
                this.passwordLetters.forEach((password) => {
                     password.startGame(context);
-                    // const distance = option.calculateDistance(
-                    //      option.mousePosition.x,
-                    //      option.mousePosition.y,
-                    //      password.x,
-                    //      password.y,
-                    // );
-                    // console.log(distance);
-                    // if (distance < 50) {
-                    //      password.color = 'white';
-                    // }
+                    this.torchLight.draw(context, this.inputs);
                });
           }
 
@@ -75,7 +69,6 @@ window.addEventListener('load', function () {
      }
 
      const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
-     const inputs = new InputsHandler(canvas, context);
 
      function animate() {
           context.fillStyle = 'rgb(0,0,0)';
