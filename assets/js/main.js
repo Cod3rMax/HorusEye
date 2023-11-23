@@ -25,9 +25,10 @@ window.addEventListener('load', function () {
                this.instructionAnimationDone = true;
                this.instructions.draw(context);
                this.torchLight = new TorchLight(this, this.inputs);
-               for (let i = 0; i < 1; i++) {
+               for (let i = 0; i < 3; i++) {
                     this.passwordLetters.push(new GameLobby(this));
                }
+               this.gameHackingDone = true;
           }
 
           draw(context) {
@@ -45,9 +46,11 @@ window.addEventListener('load', function () {
                     return;
                } else this.instructionsArray = [];
 
-               this.passwordLetters.forEach((password) => {
-                    password.startGame(context);
-               });
+               if (!this.gameHackingDone) {
+                    this.passwordLetters.forEach((password) => {
+                         password.startGame(context);
+                    });
+               }
           }
 
           update() {
@@ -59,13 +62,16 @@ window.addEventListener('load', function () {
                } else this.particlesArray = [];
 
                if (!this.instructionAnimationDone) {
+                    this.torchLight.draw(context, this.inputs);
                     this.instructionsArray.forEach((particle) => {
                          particle.update();
                     });
                     return;
                } else this.instructionsArray = [];
 
-               this.torchLight.draw(context, this.inputs);
+               if (!this.gameHackingDone) {
+                    this.torchLight.draw(context, this.inputs);
+               }
           }
      }
 

@@ -46,7 +46,7 @@ export class GameLobby {
                '0',
           ];
           this.letter = this.passwordArray[Math.floor(Math.random() * this.passwordArray.length)];
-          this.color = 'red';
+          this.color = 'black';
      }
 
      startGame(context) {
@@ -65,7 +65,6 @@ export class GameLobby {
                     option.mousePosition.x,
                     option.mousePosition.y,
                ) - this.radius;
-          // console.log(1 - distance / option.torchLightRadius);
           if (distance < option.torchLightRadius) {
                this.color = `rgb(0,0,0,${1 - distance / option.torchLightRadius})`;
           } else {

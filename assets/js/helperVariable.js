@@ -9,7 +9,7 @@ export const option = {
           x: 0,
           y: 0,
      },
-     torchLightRadius: 50,
+     torchLightRadius: 60,
      clearScreen: function (context, game) {
           context.clearRect(0, 0, game.width, game.height);
      },
