@@ -48,7 +48,6 @@ window.addEventListener('load', function () {
                this.passwordLetters.forEach((password) => {
                     password.startGame(context);
                });
-               this.torchLight.draw(context, this.inputs);
           }
 
           update() {
@@ -65,6 +64,8 @@ window.addEventListener('load', function () {
                     });
                     return;
                } else this.instructionsArray = [];
+
+               this.torchLight.draw(context, this.inputs);
           }
      }
 

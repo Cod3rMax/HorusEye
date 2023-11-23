@@ -6,9 +6,10 @@ export const option = {
      displayInstructionTime: 7000,
      introSpeed: 0.04,
      mousePosition: {
-          x: undefined,
-          y: undefined,
+          x: 0,
+          y: 0,
      },
+     torchLightRadius: 50,
      clearScreen: function (context, game) {
           context.clearRect(0, 0, game.width, game.height);
      },
