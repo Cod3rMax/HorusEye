@@ -16,7 +16,9 @@ export class Intro {
      draw(context) {
           this.image.onload = () => {
                context.drawImage(this.image, this.x, this.y, this.imageWidth, this.imageHeight);
-               const pixels = context.getImageData(0, 0, this.game.width, this.game.height);
+               const pixels = context.getImageData(0, 0, this.game.width, this.game.height, {
+                    willReadFrequently: true,
+               });
                option.clearScreen(context, this.game);
                for (let y = 0; y < pixels.height; y += option.introParticlesGap) {
                     for (let x = 0; x < pixels.width; x += option.introParticlesGap) {

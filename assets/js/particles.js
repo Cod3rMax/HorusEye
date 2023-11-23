@@ -40,20 +40,3 @@ export class IntroParticles extends Particles {
           }
      }
 }
-
-export class InstructionParticles extends Particles {
-     constructor(x, y, color, game) {
-          super(x, y, color, game);
-     }
-
-     update() {
-          super.update();
-          const dx = this.originX - this.x;
-          const dy = this.originY - this.y;
-          if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
-               setTimeout(() => {
-                    this.game.instructionAnimationDone = true;
-               }, option.displayInstructionTime);
-          }
-     }
-}

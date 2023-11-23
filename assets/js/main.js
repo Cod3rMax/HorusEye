@@ -15,15 +15,14 @@ window.addEventListener('load', function () {
                this.height = gameHeight;
                this.inputs = new InputsHandler(canvas);
                this.particlesArray = [];
-               this.instructionsArray = [];
                this.passwordLetters = [];
+               //* intro animation
                this.intro = new Intro(this);
-               this.introAnimationDone = false;
                this.intro.draw(context);
+               this.introAnimationDone = false;
                //* instruction animation
                this.instructions = new Instructions(this);
                this.instructionAnimationDone = false;
-               this.instructions.draw(context);
                this.torchLight = new TorchLight(this, this.inputs);
                for (let i = 0; i < 3; i++) {
                     this.passwordLetters.push(new GameLobby(this));
@@ -40,11 +39,13 @@ window.addEventListener('load', function () {
                } else this.particlesArray = [];
 
                if (!this.instructionAnimationDone) {
-                    this.instructionsArray.forEach((particle) => {
-                         particle.draw(context);
-                    });
+                    setTimeout(() => {
+                         this.instructionAnimationDone = true;
+                    }, option.displayInstructionTime);
+
+                    this.instructions.draw(context);
                     return;
-               } else this.instructionsArray = [];
+               }
 
                if (!this.gameHackingDone) {
                     this.passwordLetters.forEach((password) => {
@@ -61,14 +62,6 @@ window.addEventListener('load', function () {
                     return;
                } else this.particlesArray = [];
 
-               if (!this.instructionAnimationDone) {
-                    this.torchLight.draw(context, this.inputs);
-                    this.instructionsArray.forEach((particle) => {
-                         particle.update();
-                    });
-                    return;
-               } else this.instructionsArray = [];
-
                if (!this.gameHackingDone) {
                     this.torchLight.draw(context, this.inputs);
                }
@@ -81,7 +74,6 @@ window.addEventListener('load', function () {
           context.fillStyle = 'rgb(0,0,0)';
           if (!game.introAnimationDone) option.clearScreen(context, game);
           else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
           game.update();
           game.draw(context);
           requestAnimationFrame(animate);
