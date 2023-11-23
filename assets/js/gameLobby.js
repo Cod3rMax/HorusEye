@@ -51,13 +51,6 @@ export class GameLobby {
 
      startGame(context) {
           context.beginPath();
-          context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-          context.fillStyle = 'transparent';
-          context.lineWidth = 2;
-          context.strokeStyle = 'this.color';
-          context.stroke();
-          context.closePath();
-          context.beginPath();
           context.fillStyle = this.color;
           context.font = `bold ${this.fontSize}px Verdana`;
           context.textAlign = 'center';
@@ -72,10 +65,10 @@ export class GameLobby {
                     option.mousePosition.x,
                     option.mousePosition.y,
                ) - this.radius;
-          if (distance < 20) {
-               this.color = 'rgb(255,255,255,1)';
-          } else {
+          if (distance < 60) {
                this.color = 'red';
+          } else {
+               this.color = 'orange';
           }
      }
 }

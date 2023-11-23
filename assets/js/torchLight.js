@@ -9,11 +9,11 @@ export class TorchLight {
      draw(context) {
           context.save();
           context.beginPath();
-          context.arc(option.mousePosition.x, option.mousePosition.y, 20, 0, 2 * Math.PI);
-          context.fillStyle = 'white';
-          context.lineWidth = 2;
-          context.strokeStyle = 'white';
-          context.stroke();
+          context.arc(option.mousePosition.x, option.mousePosition.y, 40, 0, 2 * Math.PI);
+          context.fillStyle = 'rgb(255,255,255,0.1)';
+          context.shadowColor = 'rgb(255,255,255, 1)';
+          context.shadowBlur = 40;
+          context.fill();
           context.closePath();
           context.restore();
      }
