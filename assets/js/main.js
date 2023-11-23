@@ -18,17 +18,17 @@ window.addEventListener('load', function () {
                this.instructionsArray = [];
                this.passwordLetters = [];
                this.intro = new Intro(this);
-               this.introAnimationDone = true;
+               this.introAnimationDone = false;
                this.intro.draw(context);
                //* instruction animation
                this.instructions = new Instructions(this);
-               this.instructionAnimationDone = true;
+               this.instructionAnimationDone = false;
                this.instructions.draw(context);
                this.torchLight = new TorchLight(this, this.inputs);
                for (let i = 0; i < 3; i++) {
                     this.passwordLetters.push(new GameLobby(this));
                }
-               this.gameHackingDone = true;
+               this.gameHackingDone = false;
           }
 
           draw(context) {
