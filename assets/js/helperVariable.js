@@ -3,13 +3,13 @@ export const option = {
      introImageSize: 2,
      introParticlesGap: 3,
      displayImageTime: 3000,
-     timeToLookForPassword: 100,
+     timeToLookForPassword: 10000,
      introSpeed: 0.04,
      mousePosition: {
           x: 0,
           y: 0,
      },
-     torchLightRadius: 60, // 60 best
+     torchLightRadius: 70, // 70 best - less than that it will be hard.
      clearScreen: function (context, game) {
           context.clearRect(0, 0, game.width, game.height);
      },

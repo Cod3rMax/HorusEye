@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
                //* intro animation
                this.intro = new Intro(this);
                this.intro.draw(context);
-               this.introAnimationDone = true;
+               this.introAnimationDone = false;
                //* instruction animation
                this.instructions = new Instructions(this);
                this.instructionAnimationDone = false;
