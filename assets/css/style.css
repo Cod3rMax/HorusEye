@@ -92,6 +92,7 @@ canvas {
      align-items: center;
      justify-content: space-evenly;
      flex-wrap: nowrap;
+     display: none;
 }
 
 #userInputContainer > div > input {

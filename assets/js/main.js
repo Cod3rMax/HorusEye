@@ -25,18 +25,18 @@ window.addEventListener('load', function () {
                this.introAnimationDone = true;
                //* instruction animation
                this.instructions = new Instructions(this);
-               this.instructionAnimationDone = true;
+               this.instructionAnimationDone = false;
                this.torchLight = new TorchLight(this, this.inputs);
                for (let i = 0; i < 3; i++) {
                     this.passwordLetters.push(new GameLobby(this));
                }
-               this.gameHackingDone = true;
+               this.gameHackingDone = false;
                this.gameAudio = new GameAudio('../../audio/clock.mp3');
 
                // Progress bar
                this.progressBar = document.getElementById('countingBar');
                this.progressBarValue = 0;
-               this.uiMessage = new UiMessage();
+               this.uiMessage = new UiMessage(this);
           }
 
           draw(context, deltaTime) {
