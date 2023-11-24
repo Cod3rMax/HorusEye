@@ -22,15 +22,15 @@ window.addEventListener('load', function () {
                //* intro animation
                this.intro = new Intro(this);
                this.intro.draw(context);
-               this.introAnimationDone = false;
+               this.introAnimationDone = true;
                //* instruction animation
                this.instructions = new Instructions(this);
-               this.instructionAnimationDone = false;
+               this.instructionAnimationDone = true;
                this.torchLight = new TorchLight(this, this.inputs);
                for (let i = 0; i < 3; i++) {
                     this.passwordLetters.push(new GameLobby(this));
                }
-               this.gameHackingDone = false;
+               this.gameHackingDone = true;
                this.gameAudio = new GameAudio('../../audio/clock.mp3');
 
                // Progress bar
