@@ -45,19 +45,15 @@ window.addEventListener('load', function () {
                } else this.particlesArray = [];
 
                if (!this.instructionAnimationDone) {
-                    setTimeout(() => {
-                         this.instructionAnimationDone = true;
-                    }, option.displayInstructionTime);
-
                     this.instructions.draw(context);
-                    return;
                }
 
-               if (!this.gameHackingDone) {
+               if (!this.gameHackingDone && this.inputs.keys.includes('Enter')) {
+                    this.instructionAnimationDone = true;
                     this.passwordLetters.forEach((password) => {
                          password.startGame(context);
                     });
-                    this.gameAudio.startAudio();
+
                     if (this.progressBarValue < option.timeToLookForPassword) {
                          this.progressBarValue += deltaTime;
                          let percentage = Math.floor(
@@ -65,9 +61,11 @@ window.addEventListener('load', function () {
                          );
 
                          this.progressBar.style.width = `${percentage}%`;
+                         this.gameAudio.startAudio();
                     } else {
                          this.gameAudio.stopAudio();
                          this.gameHackingDone = true;
+                         this.inputs.keys = [];
                     }
                }
           }

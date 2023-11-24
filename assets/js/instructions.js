@@ -16,7 +16,11 @@ export class Instructions {
                this.game.height / 4,
           );
           context.fillText('You have limited time', this.game.width / 2, this.game.height / 3);
-          context.fillText('Starting Now!', this.game.width / 2, this.game.height / 2);
+          context.fillText(
+               'Press enter to start your hunt!',
+               this.game.width / 2,
+               this.game.height / 2,
+          );
           context.fill();
           context.closePath();
      }
