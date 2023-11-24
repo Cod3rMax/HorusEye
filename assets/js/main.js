@@ -30,10 +30,13 @@ window.addEventListener('load', function () {
                }
                this.gameHackingDone = false;
                this.gameAudio = new GameAudio('../../audio/clock.mp3');
+
+               // Progress bar
+               this.progressBar = document.getElementById('countingBar');
                this.progressBarValue = 0;
           }
 
-          draw(context) {
+          draw(context, deltaTime) {
                if (!this.introAnimationDone) {
                     this.particlesArray.forEach((particle) => {
                          particle.draw(context);
@@ -54,11 +57,22 @@ window.addEventListener('load', function () {
                     this.passwordLetters.forEach((password) => {
                          password.startGame(context);
                     });
-                    // this.gameAudio.startAudio();
+                    this.gameAudio.startAudio();
+                    if (this.progressBarValue < option.timeToLookForPassword) {
+                         this.progressBarValue += deltaTime;
+                         let percentage = Math.floor(
+                              (this.progressBarValue / option.timeToLookForPassword) * 100,
+                         );
+
+                         this.progressBar.style.width = `${percentage}%`;
+                    } else {
+                         this.gameAudio.stopAudio();
+                         this.gameHackingDone = true;
+                    }
                }
           }
 
-          update(deltaTime) {
+          update() {
                if (!this.introAnimationDone) {
                     this.particlesArray.forEach((particle) => {
                          particle.update();
@@ -68,10 +82,6 @@ window.addEventListener('load', function () {
 
                if (!this.gameHackingDone) {
                     this.torchLight.draw(context, this.inputs);
-
-                    if (this.progressBarValue < 17000) {
-                         this.progressBarValue += deltaTime;
-                    } else this.gameHackingDone = true;
                }
           }
      }
@@ -87,8 +97,8 @@ window.addEventListener('load', function () {
           if (!game.introAnimationDone) option.clearScreen(context, game);
           else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-          game.update(deltaTime);
-          game.draw(context);
+          game.update();
+          game.draw(context, deltaTime);
           requestAnimationFrame(animate);
      }
      animate(0);

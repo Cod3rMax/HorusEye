@@ -4,6 +4,7 @@ export const option = {
      introParticlesGap: 3,
      displayImageTime: 3000,
      displayInstructionTime: 7000,
+     timeToLookForPassword: 10000,
      introSpeed: 0.04,
      mousePosition: {
           x: 0,
