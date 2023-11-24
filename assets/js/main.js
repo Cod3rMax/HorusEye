@@ -3,6 +3,7 @@ import { Instructions } from './instructions.js';
 import { InputsHandler } from './inputs.js';
 import { GameLobby } from './gameLobby.js';
 import { TorchLight } from './torchLight.js';
+import { GameAudio } from './audio.js';
 import { option } from './helperVariable.js';
 window.addEventListener('load', function () {
      const canvas = document.querySelector('canvas');
@@ -28,6 +29,8 @@ window.addEventListener('load', function () {
                     this.passwordLetters.push(new GameLobby(this));
                }
                this.gameHackingDone = false;
+               this.gameAudio = new GameAudio('../../audio/clock.mp3');
+               this.progressBarValue = 0;
           }
 
           draw(context) {
@@ -51,10 +54,11 @@ window.addEventListener('load', function () {
                     this.passwordLetters.forEach((password) => {
                          password.startGame(context);
                     });
+                    // this.gameAudio.startAudio();
                }
           }
 
-          update() {
+          update(deltaTime) {
                if (!this.introAnimationDone) {
                     this.particlesArray.forEach((particle) => {
                          particle.update();
@@ -64,19 +68,28 @@ window.addEventListener('load', function () {
 
                if (!this.gameHackingDone) {
                     this.torchLight.draw(context, this.inputs);
+
+                    if (this.progressBarValue < 17000) {
+                         this.progressBarValue += deltaTime;
+                    } else this.gameHackingDone = true;
                }
           }
      }
 
      const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
 
-     function animate() {
+     let lastTime = 0;
+
+     function animate(timeStamp) {
+          let deltaTime = timeStamp - lastTime;
+          lastTime = timeStamp;
           context.fillStyle = 'rgb(0,0,0)';
           if (!game.introAnimationDone) option.clearScreen(context, game);
           else context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-          game.update();
+
+          game.update(deltaTime);
           game.draw(context);
           requestAnimationFrame(animate);
      }
-     animate();
+     animate(0);
 });
