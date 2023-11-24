@@ -4,6 +4,7 @@ import { InputsHandler } from './inputs.js';
 import { GameLobby } from './gameLobby.js';
 import { TorchLight } from './torchLight.js';
 import { GameAudio } from './audio.js';
+import { UiMessage } from './uiMessage.js';
 import { option } from './helperVariable.js';
 window.addEventListener('load', function () {
      const canvas = document.querySelector('canvas');
@@ -20,7 +21,7 @@ window.addEventListener('load', function () {
                //* intro animation
                this.intro = new Intro(this);
                this.intro.draw(context);
-               this.introAnimationDone = false;
+               this.introAnimationDone = true;
                //* instruction animation
                this.instructions = new Instructions(this);
                this.instructionAnimationDone = false;
@@ -34,6 +35,7 @@ window.addEventListener('load', function () {
                // Progress bar
                this.progressBar = document.getElementById('countingBar');
                this.progressBarValue = 0;
+               this.uiMessage = new UiMessage();
           }
 
           draw(context, deltaTime) {
@@ -59,6 +61,7 @@ window.addEventListener('load', function () {
                          let percentage = Math.floor(
                               (this.progressBarValue / option.timeToLookForPassword) * 100,
                          );
+                         this.uiMessage.writeMessage(percentage);
 
                          this.progressBar.style.width = `${percentage}%`;
                          this.gameAudio.startAudio();
