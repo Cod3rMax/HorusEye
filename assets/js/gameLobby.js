@@ -47,6 +47,7 @@ export class GameLobby {
           ];
           this.letter = this.passwordArray[Math.floor(Math.random() * this.passwordArray.length)];
           this.color = 'black';
+          this.game.correctPassword.push(this.letter);
      }
 
      startGame(context) {
