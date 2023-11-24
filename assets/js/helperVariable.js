@@ -1,6 +1,6 @@
 export const option = {
      introImage: '../../images/eye.svg',
-     introImageSize: 3,
+     introImageSize: 2,
      introParticlesGap: 3,
      displayImageTime: 3000,
      displayInstructionTime: 7000,

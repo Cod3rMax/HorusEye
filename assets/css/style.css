@@ -35,6 +35,15 @@ body {
      margin-left: 10px;
      padding: 2px 2px 2px 2px;
      color: wheat;
+     border-radius: 50%;
+}
+#securityCameraIcon {
+     margin-left: auto;
+     margin-right: 10px;
+}
+.myIcons {
+     padding: 5px;
+     font-size: 10px;
 }
 
 canvas {
