@@ -3,14 +3,16 @@
      padding: 0;
      user-select: none;
      box-sizing: border-box;
+     background-color: transparent;
 }
 body {
      height: 100vh;
      height: 100svh;
+     background-color: transparent;
 }
 
 #container {
-     background-color: red;
+     background-color: transparent;
      display: flex;
      justify-content: center;
      align-items: center;

@@ -6,6 +6,8 @@ export class UserAnswer {
           this.trueAudio = new GameAudio('../../audio/AccessGranted.wav');
           this.userInputContainer = document.getElementById('userInputContainer');
           this.userInput = document.getElementById('userInput');
+          this.correctPasswords = this.uiMessage.game.correctPassword;
+          this.countingCorrectLetters = 0;
      }
 
      showUserForm() {
@@ -14,14 +16,22 @@ export class UserAnswer {
 
           this.userInput.addEventListener('keypress', (e) => {
                if (e.key === 'Enter') {
-                    if (this.uiMessage.game.correctPassword.join('') === e.target.value) {
+                    [...e.target.value].forEach((letter) => {
+                         if (this.correctPasswords.indexOf(letter) > -1) {
+                              this.countingCorrectLetters++;
+                         }
+                    });
+
+                    if (this.countingCorrectLetters === this.correctPasswords.length) {
                          console.log('true');
                          this.trueAudio.startAudio();
                          setTimeout(() => {
                               this.trueAudio.stopAudio();
                          }, 3500);
+                         this.countingCorrectLetters = 0;
                     } else {
                          console.log('false');
+                         this.countingCorrectLetters = 0;
                          this.falseAudio.startAudio();
                     }
                }
