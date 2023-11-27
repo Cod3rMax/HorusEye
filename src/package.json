@@ -5,8 +5,8 @@
      "type": "module",
      "scripts": {
           "dev": "vite",
-          "build": "vite build",
-          "preview": "vite build && vite preview"
+          "build": "vite build && mv ../HorusEye/audio ../HorusEye/assets && mv ../HorusEye/images ../HorusEye/assets",
+          "preview": "vite build && vite preview && mv ../HorusEye/audio ../HorusEye/assets && mv ../HorusEye/images ../HorusEye/assets"
      },
      "devDependencies": {
           "vite": "^5.0.0"
