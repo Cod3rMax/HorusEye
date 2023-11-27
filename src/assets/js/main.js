@@ -31,7 +31,7 @@ window.addEventListener('load', function () {
                     this.passwordLetters.push(new GameLobby(this));
                }
                this.gameHackingDone = false;
-               this.gameAudio = new GameAudio('./assets/audio/clock.mp3');
+               this.gameAudio = new GameAudio(option.clockAudio);
 
                // Progress bar
                this.progressBar = document.getElementById('countingBar');

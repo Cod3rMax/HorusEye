@@ -1,5 +1,8 @@
 export const option = {
      introImage: './assets/images/eye.svg',
+     clockAudio: './assets/audio/clock.mp3',
+     accessGranted: './assets/audio/AccessGranted.wav',
+     accessDenied: './assets/audio/AccessDenied.mp3',
      introImageSize: 2,
      introParticlesGap: 3,
      displayImageTime: 3000,
