@@ -2,8 +2,8 @@ import { GameAudio } from './audio.js';
 export class UserAnswer {
      constructor(uiMessage) {
           this.uiMessage = uiMessage;
-          this.falseAudio = new GameAudio('../../audio/AccessDenied.mp3');
-          this.trueAudio = new GameAudio('../../audio/AccessGranted.wav');
+          this.falseAudio = new GameAudio('./assets/audio/AccessDenied.mp3');
+          this.trueAudio = new GameAudio('./assets/audio/AccessGranted.wav');
           this.userInputContainer = document.getElementById('userInputContainer');
           this.userInput = document.getElementById('userInput');
           this.correctPasswords = this.uiMessage.game.correctPassword;
