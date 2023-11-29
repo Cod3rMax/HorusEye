@@ -13,6 +13,8 @@ export class UserAnswer {
 
      showUserForm() {
           this.userInputContainer.style.display = 'flex';
+          this.userInput.style.display = 'flex';
+
           this.userInput.focus();
 
           this.userInput.addEventListener('keypress', (e) => {
@@ -24,17 +26,32 @@ export class UserAnswer {
                     });
 
                     if (this.countingCorrectLetters === this.correctPasswords.length) {
-                         console.log('true');
+                         fetch(`https://${GetParentResourceName()}/result`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ promise: true }),
+                         }).th;
                          this.trueAudio.startAudio();
                          setTimeout(() => {
                               this.trueAudio.stopAudio();
                          }, 3500);
                          this.countingCorrectLetters = 0;
                     } else {
-                         console.log('false');
+                         fetch(`https://${GetParentResourceName()}/result`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ promise: false }),
+                         }).th;
                          this.countingCorrectLetters = 0;
                          this.falseAudio.startAudio();
                     }
+
+                    // close everything here
+                    this.userInputContainer.style.display = 'none';
+                    this.userInput.style.display = 'none';
+                    document.getElementById('progressBar').style.display = 'none';
+                    document.querySelector('body').style.display = 'none';
+                    document.getElementById('userInput').value = '';
                }
           });
      }
