@@ -14,10 +14,9 @@ export class UserAnswer {
      showUserForm() {
           this.userInputContainer.style.display = 'flex';
           this.userInput.style.display = 'flex';
-
           this.userInput.focus();
 
-          this.userInput.addEventListener('keypress', (e) => {
+          const handleUserAnswer = (e) => {
                if (e.key === 'Enter') {
                     [...e.target.value].forEach((letter) => {
                          if (this.correctPasswords.indexOf(letter) > -1) {
@@ -30,18 +29,18 @@ export class UserAnswer {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({ promise: true }),
-                         }).th;
-                         this.trueAudio.startAudio();
-                         setTimeout(() => {
-                              this.trueAudio.stopAudio();
-                         }, 3500);
+                         });
                          this.countingCorrectLetters = 0;
+                         this.trueAudio.startAudio();
+                         // setTimeout(() => {
+                         //      this.trueAudio.stopAudio();
+                         // }, 3500);
                     } else {
                          fetch(`https://${GetParentResourceName()}/result`, {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({ promise: false }),
-                         }).th;
+                         });
                          this.countingCorrectLetters = 0;
                          this.falseAudio.startAudio();
                     }
@@ -52,7 +51,12 @@ export class UserAnswer {
                     document.getElementById('progressBar').style.display = 'none';
                     document.querySelector('body').style.display = 'none';
                     document.getElementById('userInput').value = '';
+                    this.correctPasswords = [];
+                    this.countingCorrectLetters = 0;
+                    this.userInput.removeEventListener('keypress', handleUserAnswer);
                }
-          });
+          };
+
+          this.userInput.addEventListener('keypress', handleUserAnswer);
      }
 }
